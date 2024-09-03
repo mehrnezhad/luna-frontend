@@ -24,10 +24,10 @@ const VisaContainer = ({ visa }: { visa: VisaCategoryType }) => {
                 {/* Content below the image */}
                 <div className="container">
                     <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3.5 md:gap-5 mt-5 pb-5">
-                        {visa?.children.map(child =>
+                        {visa?.children.map((child,index) =>
 
-                            <Link href={`/visa/${child.slug}`} >
-                                <Card isHoverable isFooterBlurred className="h-64 rounded-2xl bg-white shadow-xl dark:bg-zinc-700 overflow-hidden">
+                            <Link key={index} href={`/visa/${child.slug}`} >
+                                <Card key={index} isHoverable isFooterBlurred className="h-64 rounded-2xl bg-white shadow-xl dark:bg-zinc-700 overflow-hidden">
                                     <CardHeader className="flex-col items-center">
                                         <h2 className="text-black font-medium text-2xl dark:text-white">{child.title}</h2>
                                     </CardHeader>
@@ -50,8 +50,6 @@ const VisaContainer = ({ visa }: { visa: VisaCategoryType }) => {
                                 </Card>
                             </Link>
                         )}
-
-
 
                     </div>
                 </div>

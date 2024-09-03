@@ -5,9 +5,6 @@ import FaqPageItem from "./attraction-item-faq";
 import DOMPurify from 'isomorphic-dompurify';
 import ReactSlider from "./attraction-slider";
 
-
-
-
 const AttractionMainContent = ({ item }: { item: AttractionItemsType }) => {
     const images = [
         'https://via.placeholder.com/800x400?text=Slide+1',
@@ -33,10 +30,6 @@ const AttractionMainContent = ({ item }: { item: AttractionItemsType }) => {
     return (
 
         <div className='pt-5'>
-
-
-           
-
             <div id="section_0" className="text-2xl mb-4">
                 <h1 className='mb-4'>{item?.title}</h1>
               
@@ -53,25 +46,18 @@ const AttractionMainContent = ({ item }: { item: AttractionItemsType }) => {
                     /> */}
 
             </div>
-         
             {item?.contents?.map((contentItem, index) => (
                 <div key={`${index}_content`} id={`section_${index + 1}`} className="text-base text-justify mb-6 relative leading-normal" dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(addLinkStyles(contentItem.content)) }} />
 
-
             ))}
-
             {item?.faqs[0].question !== '' &&
                 <div id={`section_${item?.contents?.length + 1}`} className="text-2xl mb-4 relative">
                     <h2 className="text-2xl mb-4 mt-8">سوالات متداول</h2>
                     <span className="block w-[230px] md:h-0.5 h-0.25 bg-orange-300"></span>
                 </div>
             }
-
             <FaqPageItem item={item} />
         </div>
-
-
-
 
     );
 };

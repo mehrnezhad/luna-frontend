@@ -9,6 +9,7 @@ import { TbChecklist } from "react-icons/tb";
 import { FaCheck } from "react-icons/fa";
 import { FaQuestion } from "react-icons/fa6";
 import { Accordion, AccordionItem } from "@nextui-org/react";
+import DOMPurify from 'isomorphic-dompurify';
 const VisaItem = ({ visa }: { visa: VisaCategoryType }) => {
     visa.price_box = typeof visa.price_box === 'string' ? JSON.parse(visa.price_box) : visa.price_box
     visa.passport_requirement = typeof visa.passport_requirement === 'string' ? JSON.parse(visa.passport_requirement) : visa.passport_requirement
@@ -54,10 +55,7 @@ const VisaItem = ({ visa }: { visa: VisaCategoryType }) => {
                         </div>
                     </div>
 
-                    <div className="p-5 text-justify border-t-[3px] border-orange-300 rounded-2xl shadow-normal dark:bg-zinc-700 bg-white">
-
-                        {visa.top_content}
-
+                    <div className="p-5 text-justify border-t-[3px] border-orange-300 rounded-2xl shadow-normal dark:bg-zinc-700 bg-white" dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(visa?.top_content) }}>
                     </div>
 
                     <div className="flex justify-start items-center gap-2">
@@ -78,7 +76,7 @@ const VisaItem = ({ visa }: { visa: VisaCategoryType }) => {
                                         <RiInformation2Line />
                                         <div className="">{item.label}</div>
                                     </div>
-                                    <div className="flex w-1/2">{item.value}</div>
+                                    <div className="flex w-1/2" dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(item?.value) }}></div>
                                 </div>
                             )}
 
@@ -98,7 +96,7 @@ const VisaItem = ({ visa }: { visa: VisaCategoryType }) => {
                                     <div className="shrink-0 w-9 h-9 flex items-center justify-center rounded-[2rem] bg-gradient-to-br from-[#ececec] to-[#f0f0f0]"> <FaCheck size={15} /></div>
                                     <div className="flex flex-col gap-y-2">
                                         <div className="">{item.title}</div>
-                                        <div className="">{item.description}</div>
+                                        <div dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(item?.description) }}></div>
                                     </div>
                                 </div>
                             </div>
@@ -106,10 +104,7 @@ const VisaItem = ({ visa }: { visa: VisaCategoryType }) => {
                         )}
                     </div>
 
-                    <div className="p-5 text-justify border-t-[3px] border-orange-300 rounded-2xl shadow-normal dark:bg-zinc-700 bg-white">
-
-                        {visa?.main_content}
-
+                    <div dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(visa?.main_content) }} className="p-5 text-justify border-t-[3px] border-orange-300 rounded-2xl shadow-normal dark:bg-zinc-700 bg-white">
                     </div>
 
                     <div className="flex justify-start items-center gap-2">

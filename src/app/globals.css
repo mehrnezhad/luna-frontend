@@ -122,4 +122,9 @@
  top:-3px
 }
 
+
+.container a:hover{
+  @apply text-orange-600
+}
+
 }
