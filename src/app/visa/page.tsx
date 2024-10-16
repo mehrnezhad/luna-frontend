@@ -1,6 +1,6 @@
 import VisaContainer from "@/components/visa/visa-container"
 import * as actions from '@/actions'
-
+import React from "react"
 export async function generateMetadata() {
     const visa = await actions.getParentcategory()
     const image = typeof visa?.images === 'string' ? JSON.parse(visa.images) : visa.images

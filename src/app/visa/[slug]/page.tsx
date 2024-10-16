@@ -6,6 +6,7 @@ import Link from 'next/link'
 import path from 'path'
 import { FAQPage, WithContext } from "schema-dts";
 import Script from 'next/script'
+import React from 'react'
 export async function generateMetadata({ params }: { params: { slug: string } }) {
     const { slug } = params
     const visa = await actions.getCategory(slug)

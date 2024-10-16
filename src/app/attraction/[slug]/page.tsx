@@ -5,7 +5,7 @@ import path from "path"
 import AttractionRightMenu from '@/components/attraction/attraction-item-rightmenu';
 import AttractionMainContent from '@/components/attraction/attraction-item-maincontent';
 import AttractionBreadCrumb from "@/components/attraction/atrraction-item-breadcrumb"
-
+import React from 'react';
 export async function generateMetadata({ params }: { params: { slug: string } }) {
     const { slug } = params
     let metaSeo = await actions.getItem(slug)

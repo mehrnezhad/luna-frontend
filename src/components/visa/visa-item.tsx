@@ -10,6 +10,7 @@ import { FaCheck } from "react-icons/fa";
 import { FaQuestion } from "react-icons/fa6";
 import { Accordion, AccordionItem } from "@nextui-org/react";
 import DOMPurify from 'isomorphic-dompurify';
+import React from "react";
 const VisaItem = ({ visa }: { visa: VisaCategoryType }) => {
     visa.price_box = typeof visa.price_box === 'string' ? JSON.parse(visa.price_box) : visa.price_box
     visa.passport_requirement = typeof visa.passport_requirement === 'string' ? JSON.parse(visa.passport_requirement) : visa.passport_requirement
@@ -19,9 +20,11 @@ const VisaItem = ({ visa }: { visa: VisaCategoryType }) => {
         <>
             <div className="flex flex-row items-center justify-start">
                 <div className="flex gap-2 items-center justify-start">
+
                     {visa.logo ?
                         <Image
                             alt={visa.title}
+                            className="w-16 md:w-[90px]"
                             src={`${process.env.NEXT_PUBLIC_HOST_ADDR}/${visa?.logo}`}
                             width={90}
                             height={65}
@@ -29,12 +32,12 @@ const VisaItem = ({ visa }: { visa: VisaCategoryType }) => {
                         :
                         ''
                     }
-                    <h1 className="text-3xl font-DanaDemiBold">{visa.title}</h1>
+                    <h1 className="text-lg md:text-3xl font-DanaDemiBold">{visa.title}</h1>
                 </div>
 
             </div>
             <div className="flex gap-5 mt-3">
-                <div className="flex flex-col gap-y-5 w-3/4 dark:text-white">
+                <div className="flex flex-col gap-y-5 w-full dark:text-white">
 
 
                     <div className="flex gap-5 w-full">
@@ -77,6 +80,7 @@ const VisaItem = ({ visa }: { visa: VisaCategoryType }) => {
                                         <div className="">{item.label}</div>
                                     </div>
                                     <div className="flex w-1/2" dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(item?.value) }}></div>
+                            
                                 </div>
                             )}
 
@@ -121,8 +125,7 @@ const VisaItem = ({ visa }: { visa: VisaCategoryType }) => {
 
                 </div>
 
-                <div className="flex w-1/4 h-12text-justify border-t-[3px] border-orange-300 rounded-2xl shadow-normal dark:bg-zinc-700 bg-white">i9090i90</div>
-            </div>
+       </div>
         </>
     )
 }

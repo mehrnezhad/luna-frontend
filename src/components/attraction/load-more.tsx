@@ -5,7 +5,7 @@ import { Spinner } from "@nextui-org/react";
 import * as actions from '@/actions'
 import type { AttractionItemsType } from "@/type/attraction/attraction_categories"
 import AttractionCard from "./attraction-card";
-
+import React from "react";
 const LoadMore =({ slugProps }: { slugProps: string }) => {
     
     const [attracions, setAttractions] = useState<AttractionItemsType[]>([])
@@ -49,7 +49,6 @@ const LoadMore =({ slugProps }: { slugProps: string }) => {
     return (
         <>
             <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3.5 md:gap-5 pt-5">
-
                 {attracions.map(item => (
                     <AttractionCard key={item.id} {...item} />
                 ))}

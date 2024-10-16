@@ -127,4 +127,19 @@
   @apply text-orange-600
 }
 
+
+.custom-checkbox input[type="checkbox"] {
+  background-color: white; /* Default light mode */
+  border: 1px solid #ccc;  /* Light mode border */
+}
+
+.dark .custom-checkbox input[type="checkbox"] {
+  @apply bg-white
+}
+
+.custom-checkbox input[type="checkbox"]:checked {
+  background-color: #1e90ff; /* Blue color when checked */
+}
+
+
 }

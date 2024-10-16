@@ -1,6 +1,7 @@
 import Link from "next/link"
 import { HiChevronDoubleLeft } from "react-icons/hi";
 import type { AttractionItemsType } from "@/type/attraction/attraction_categories"
+import React from "react";
 const AttractionRightMenu = async ({ item }: { item: AttractionItemsType }) => {
     return (
         <>

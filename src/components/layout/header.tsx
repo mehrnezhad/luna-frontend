@@ -2,6 +2,7 @@
 import Image from "next/image"
 import Link from "next/link"
 import { useState } from "react";
+import React from "react";
 import SubMenu from "./subMenu";
 import { ThemeSwitcher } from "./themeSwitcher"
 import { ThemeSwitcherMobile } from "./themeSwitcherMobile";
@@ -55,45 +56,35 @@ const Header = ({ categoriesAttr }: CategoryAttrListProps) => {
                                     </div>
 
                                     <Link href="/" className="hover:text-orange-200">صفحه اصلی</Link>
-                                    <Link href="#" className="hover:text-orange-300">فروشگاه</Link>
                                     <div className="group">
 
                                         <div className='flex items-center justify-between'>
-                                            <Link href="#" className="group-hover:text-orange-300 transition-colors">
+                                            <Link href="/tour" className="group-hover:text-orange-300 transition-colors">
                                                 تورها
                                             </Link>
 
-                                            <div>
-                                                <HiMiniChevronDown size={20} />
-                                            </div>
-
                                         </div>
 
-                                        <div className="hidden group-hover:flex flex-col absolute left-0 right-0 p-10 w-full shadow-normal transition-all child:tracking-normal child:transition-colors overflow-x-hidden delay-75 rounded-2xl text-zinc-700 dark:text-white text-base bg-white dark:bg-zinc-700">
-
-                                            <div className="grid grid-cols-2 md:grid-cols-4 gap-5">
-                                            </div>
-                                        </div>
                                     </div>
 
                                     <div className="group">
 
                                         <div className='flex items-center justify-between'>
-                                            <Link href="#" className="group-hover:text-orange-300 transition-colors">
+                                            <Link href="/hotel" className="group-hover:text-orange-300 transition-colors">
                                                 هتل ها
                                             </Link>
 
-                                            <div>
+                                            {/* <div>
                                                 <HiMiniChevronDown size={20} />
-                                            </div>
+                                            </div> */}
 
                                         </div>
 
-                                        <div className="hidden group-hover:flex flex-col absolute left-0 right-0 p-10 w-full shadow-normal transition-all child:tracking-normal child:transition-colors overflow-x-hidden delay-75 rounded-2xl text-zinc-700 dark:text-white text-base bg-white dark:bg-zinc-700">
+                                        {/* <div className="hidden group-hover:flex flex-col absolute left-0 right-0 p-10 w-full shadow-normal transition-all child:tracking-normal child:transition-colors overflow-x-hidden delay-75 rounded-2xl text-zinc-700 dark:text-white text-base bg-white dark:bg-zinc-700">
 
                                             <div className="grid grid-cols-2 md:grid-cols-4 gap-5">
                                             </div>
-                                        </div>
+                                        </div> */}
                                     </div>
 
                                     <div className="group">
@@ -256,7 +247,7 @@ const Header = ({ categoriesAttr }: CategoryAttrListProps) => {
                                 )}
                             </li>
                             <li>
-                                <Link href="#" className='flex items-center gap-x-2 py-5 h-4 px-2.5'>
+                                <Link href="/tour" className='flex items-center gap-x-2 py-5 h-4 px-2.5'>
                                     <HiOutlineChatBubbleLeftEllipsis size={20} />
                                     تورها
                                 </Link>
@@ -284,7 +275,7 @@ const Header = ({ categoriesAttr }: CategoryAttrListProps) => {
                             </li>
 
                             <li>
-                                <Link href="/about" className='flex items-center gap-x-2 py-5 h-4 px-2.5'>
+                                <Link href="/hotel" className='flex items-center gap-x-2 py-5 h-4 px-2.5'>
                                     <HiOutlineBriefcase size={20} />
                                     هتل ها
                                 </Link>
@@ -299,9 +290,9 @@ const Header = ({ categoriesAttr }: CategoryAttrListProps) => {
 
 
                             <li>
-                                <Link href="#" className='flex items-center gap-x-2 py-5 h-4 px-2.5'>
+                                <Link href="/visa" className='flex items-center gap-x-2 py-5 h-4 px-2.5'>
                                     <FiPhoneOutgoing size={20} />
-                                    تماس با ما
+                                     ویزا 
                                 </Link>
                             </li>
                         </ul>

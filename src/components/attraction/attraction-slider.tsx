@@ -12,9 +12,9 @@ import 'swiper/css/pagination';
 import 'swiper/css/scrollbar';
 
 const ReactSlider = ({ images }: { images: string }) => {
-  const sliderImages = JSON.parse(images);
-  
 
+  const sliderImages = typeof images === 'string' ? JSON.parse(images) : images 
+  
   return (
    
       <Swiper

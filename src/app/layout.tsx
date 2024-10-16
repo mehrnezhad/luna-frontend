@@ -1,11 +1,11 @@
 import type { Metadata } from "next";
 import Provider from "./provider";
-
+import Footer from "@/components/layout/footer";
 import "./globals.css";
 import Header from "@/components/layout/header";
 import { getCategoriesAttractions } from "@/actions/attraction"; 
 import type { AttractionCategoriesType } from "@/type/attraction/attraction_categories";
-
+import NextTopLoader from 'nextjs-toploader';
 export const metadata: Metadata = {
   title: {
    default:"آژانس مسافرتی لونا گشت آریا - مجری مستقیم تور مسافرتی",
@@ -41,10 +41,10 @@ export default async function RootLayout({
     <html lang="fa" dir="rtl">
       <body className="font-Dana">
         <Provider>
-
+        <NextTopLoader showSpinner={false}/>
          <Header categoriesAttr={categoriesAttr}/>
-
           {children}
+          <Footer />
         </Provider>
       </body>
     </html>
