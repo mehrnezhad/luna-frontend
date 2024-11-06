@@ -1,6 +1,6 @@
 import * as actions from '@/actions'
 import TourPageContainer from "@/components/tour/tour-page-container"
-
+import Script from "next/script";
 export async function generateMetadata() {
     
     const page = await actions.getPageWithTourSlug()
@@ -14,7 +14,7 @@ export async function generateMetadata() {
       openGraph: {
         title: page?.meta_title,
         description: page?.meta_description,
-        type: 'article',
+        type: 'website',
         publishedTime: page?.createdAt,
         images: [
           {
@@ -31,7 +31,7 @@ export async function generateMetadata() {
         card: 'summary_large_image',
         title: page?.meta_title,
         description: page?.meta_description,
-        creator: '@nextjs',
+        creator: '@lunagasht',
         images: [
           {
             type: 'image/webp',
@@ -43,7 +43,7 @@ export async function generateMetadata() {
         ]
       },
       alternates: {
-        canonical: `${process.env.HOST_MYSEL}/hotel`,
+        canonical: `${process.env.HOST_MYSEL}/tour`,
       }
   
     }
@@ -51,13 +51,36 @@ export async function generateMetadata() {
 }
   
 
-
 const TourPage = async () => {
     const tourPage = await actions.getPageWithTourSlug()
     const categories = await actions.getAllCategoriesTour()
+  // Define breadcrumb JSON-LD schema
 
+  const breadcrumbSchema = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "صفحه اصلی",
+        "item": `${process.env.HOST_MYSEL}`
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "تور",
+        "item": `${process.env.HOST_MYSEL}/tour`
+      }
+    ]
+  };
     return (
         <>
+      <Script
+        type="application/ld+json"
+        id="breadcrumb-schema"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+      />
           <TourPageContainer tourPage={tourPage} categories={categories}/>
         </>
     )

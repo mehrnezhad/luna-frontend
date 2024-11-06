@@ -12,8 +12,8 @@ const VisaContainer = ({ visa }: { visa: VisaCategoryType }) => {
 
     return (
         <>
-            <section className='dark:bg-zinc-900 bg-gray-200 min-h-screen'>
-                <div className="relative bg-slate-900 w-full md:h-96 h-36">
+            <section className='dark:bg-zinc-900 bg-gray-100 min-h-screen'>
+                <div className="relative bg-slate-900 w-full md:h-96 h-44">
                     <Image
                         fill
                         src={`${process.env.NEXT_PUBLIC_HOST_ADDR}/${image[0]}`}
@@ -37,7 +37,7 @@ const VisaContainer = ({ visa }: { visa: VisaCategoryType }) => {
                             <Link key={index} href={`/visa/${child.slug}`} >
                                 <Card key={index} isHoverable isFooterBlurred className="h-56 md:h-64 rounded-2xl bg-white shadow-xl dark:bg-zinc-700 overflow-hidden">
                                     <CardHeader className="flex-col items-center">
-                                        <h2 className="text-black font-medium text-base md:text-2xl dark:text-white">{child.title}</h2>
+                                        <h3 className="text-black font-medium text-base md:text-2xl dark:text-white">{child.title}</h3>
                                     </CardHeader>
                                     <Image
                                         alt={child.title}
@@ -47,11 +47,11 @@ const VisaContainer = ({ visa }: { visa: VisaCategoryType }) => {
                                         height={300}
                                     />
 
-                                    <CardFooter className="absolute bg-white/30 bottom-0 border-t-1 border-zinc-100/50 z-10 justify-between">
+                                    <CardFooter className="absolute bg-white/30 bottom-0 border-t-1 border-zinc-100/50 z-10 justify-between px-1 md:px-2">
                                         <div>
-                                            <p className="text-black text-sm md:text-base font-DanaDemiBold">شروع قیمت از </p>
+                                            <p className="text-black text-sm md:text-base md:font-DanaDemiBold">شروع قیمت از </p>
                                         </div>
-                                        <Button className="text-base md:text-lg font-DanaDemiBold" color="primary" radius="full" size="sm">
+                                        <Button className="text-sm md:text-lg font-DanaDemiBold" color="primary" radius="full" size="sm">
                                             {child.startedPrice}
                                         </Button>
                                     </CardFooter>

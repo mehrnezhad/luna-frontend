@@ -1,3 +1,4 @@
+'use server'
 import type { HotelPageItemType , HotelCategoryType , HotelItemType} from "@/type/hotel"
 
 export const getPageWithHotelSlug = async ():Promise<HotelPageItemType> => {
@@ -50,3 +51,21 @@ export const getItemWithSlug = async (slug: string): Promise<HotelItemType> => {
     return data?.data?.result
 
 }
+
+export const updateStarHotel = async (newRating:number , id: string): Promise<Number> => {
+
+    const res = await fetch(`${process.env.HOST_ADDR}/hotel/updateStarHotel/${id}`, {
+       method: 'PATCH',
+       cache:'no-cache',
+       headers: {
+        'Content-Type': 'application/json'
+       },
+       body: JSON.stringify({newRating})
+    })
+
+    if (!res.ok) throw new Error("Failed to fetch data from the server")
+    const data = await res.json()
+
+    return data?.statusCode
+}
+

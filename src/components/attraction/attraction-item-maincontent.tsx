@@ -33,7 +33,7 @@ const AttractionMainContent = ({ item }: { item: AttractionItemsType }) => {
             <div id="section_0" className="text-2xl mb-4">
                 <h1 className='mb-4'>{item?.title}</h1>
               
-                        <ReactSlider images={item?.images}/>
+                        <ReactSlider images={item?.images} title={item?.title}/>
              
                 {/* <Image
                         src={`${process.env.HOST_ADDR}/${imagePath}/${imageUrl}`}

@@ -122,10 +122,19 @@
  top:-3px
 }
 
-
-.container a:hover{
-  @apply text-orange-600
+.container {
+  padding-bottom: 20px; /* Adjust padding as needed */
+  position: relative;
 }
+.container .swiper-pagination {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  text-align: center;
+}
+/* .container a:hover{
+  @apply text-orange-600
+} */
 
 
 .custom-checkbox input[type="checkbox"] {

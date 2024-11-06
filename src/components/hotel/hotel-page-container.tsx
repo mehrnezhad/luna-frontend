@@ -4,26 +4,25 @@ import React from "react";
 import { Card, CardHeader, CardFooter, Button } from "@nextui-org/react";
 import Image from "next/image";
 import Link from "next/link";
+import Script from "next/script";
 import { HiChevronLeft } from "react-icons/hi";
 const HotelPageContainer = ({ hotelPage, categories }: { hotelPage: HotelPageItemType, categories: HotelCategoryType[] }) => {
-
     const image = typeof hotelPage?.images === 'string' ? JSON.parse(hotelPage.images) : hotelPage.images
+
 
     return (
         <>
-
-            <section className='dark:bg-zinc-900 bg-gray-200 min-h-screen'>
-                <div className="relative bg-slate-900 w-full h-20 md:h-96">
+   
+            <section className='dark:bg-zinc-900 bg-gray-100 min-h-screen'>
+                <div className="relative bg-slate-900 w-full h-44 md:h-96">
                     <Image
                         fill
                         src={`${process.env.NEXT_PUBLIC_HOST_ADDR}/${image[0]}`}
                         alt={hotelPage.title}
-                        style={{ objectFit: 'cover' }}
+        
+                        loading="lazy"
                     />
                 </div>
-
-
-
                 {/* Content below the image */}
                 <div className="container">
                 <div className="flex flex-wrap justify-start items-center text-sm md:text-base pb-2 gap-x-2 pt-3">
@@ -32,6 +31,9 @@ const HotelPageContainer = ({ hotelPage, categories }: { hotelPage: HotelPageIte
                   هتل
                </div>
 
+               <div className="section-title py-3">
+                    <h1>هتل های داخلی و خارجی</h1>
+               </div>
                     <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3.5 md:gap-5 mt-5 pb-5">
                         {categories.map((child, index) =>
 
@@ -54,7 +56,6 @@ const HotelPageContainer = ({ hotelPage, categories }: { hotelPage: HotelPageIte
                                 </Card>
                             </Link>
                         )}
-
                     </div>
                 </div>
             </section>

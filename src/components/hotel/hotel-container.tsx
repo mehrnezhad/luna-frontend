@@ -131,13 +131,14 @@ const HotelContainer = ({ items, slug }: { items: HotelCategoryType, slug: strin
 
     return (
         <>
-            <section className='dark:bg-zinc-900 bg-gray-200 min-h-screen pb-6'>
-                <div className="relative bg-slate-900 w-full h-30 md:h-96">
+            <section className='dark:bg-zinc-900 bg-gray-100 min-h-screen pb-6'>
+                <div className="relative bg-slate-900 w-full h-44 md:h-96">
                     <Image
                         fill
                         src={`${process.env.NEXT_PUBLIC_HOST_ADDR}/${image[0]}`}
                         alt={items.title}
-                        style={{ objectFit: 'cover' }}
+//style={{ objectFit: 'cover' }}
+                        loading="lazy"
                     />
                 </div>
 
@@ -145,19 +146,17 @@ const HotelContainer = ({ items, slug }: { items: HotelCategoryType, slug: strin
                 {/* Content below the image */}
                 <div className="container">
 
-
                     <div className="flex flex-wrap justify-start items-center text-sm md:text-base pb-2 gap-x-2 pt-3">
                         <Link href={`${process.env.NEXT_PUBLIC_MYSELF_ADDR}`}>صفحه اصلی</Link>
                         <HiChevronLeft />
                         <Link href='/hotel'>هتل</Link>
                         <HiChevronLeft />
                         {items.title}
-
                     </div>
 
-
+             
                     <div className="flex gap-x-5">
-                        <aside className="hidden md:w-1/6 text-sm md:flex md:flex-col md:gap-y-4 pt-4 mt-4 sticky top-0 h-screen overflow-y-auto border border-slate-200 shadow-sm rounded-t dark:bg-zinc-600 bg-white ">
+                        <aside className="hidden md:w-1/6 text-sm md:flex md:flex-col md:gap-y-4 pt-4 mt-4 sticky top-0 h-screen overflow-y-auto shadow-sm rounded-t dark:bg-zinc-600 bg-white ">
                             <div className="flex flex-col items-center border-b-1 pb-3">
                                 <Input
                                     isClearable
@@ -303,9 +302,8 @@ const HotelContainer = ({ items, slug }: { items: HotelCategoryType, slug: strin
                                     ))}
                                 </div>
                             </div>
-
-
                         </aside>
+
                         <main className="md:w-4/6 flex flex-1 flex-col pt-4 ">
 
                             {filteredItems.length !== 0 ?
@@ -318,7 +316,7 @@ const HotelContainer = ({ items, slug }: { items: HotelCategoryType, slug: strin
                                     )}
                                 </div>
                                 :
-                                <div className="flex justify-center items-start h-screen">
+                                <div className="flex justify-center items-start h-screen text-2xl">
                                     هتلی با مشخصات وارد شده یافت نشد
                                 </div>
                             }
@@ -337,16 +335,12 @@ const HotelContainer = ({ items, slug }: { items: HotelCategoryType, slug: strin
 
                     </div>
 
-                    <div className="flex flex-col mt-4 p-4 border border-slate-200 shadow-sm rounded-t dark:bg-zinc-700 dark:text-white bg-white">
-                        <h1 className="flex text-xl justify-center items-center font-DanaDemiBold relative before:content-[''] before:block before:h-[1px] before:w-[40%] before:bg-orange-500 before:absolute before:left-0 before:top-[50%] after:content-[''] after:block after:h-[1px] after:w-[40%] after:bg-orange-500 after:absolute after:right-0 after:top-[50%]">
+                    <div className="flex flex-col mt-4 p-4 shadow-sm rounded-t dark:bg-zinc-700 dark:text-white bg-white">
+                        <h1 className="section-title flex text-xl justify-center items-center relative font-MorabbaBold before:content-[''] before:block before:h-[1px] before:w-[40%] md:before:bg-orange-500 before:absolute before:left-0 before:top-[50%] after:content-[''] after:block after:h-[1px] after:w-[40%] md:after:bg-orange-500 after:absolute after:right-0 after:top-[50%]">
                             {items.title}
                         </h1>
-
-                        <div className="text-base text-justify mb-6 relative leading-normal" dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(addLinkStyles(items.mainContent)) }} />
-                      
-                 
-                      
-                        <FaqPageItem item={items} /> 
+                        <div className="text-base text-justify mb-6 relative leading-8" dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(addLinkStyles(items.mainContent)) }} />
+                        <FaqPageItem item={items} />
                     </div>
 
                 </div>

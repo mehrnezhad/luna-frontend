@@ -9,6 +9,11 @@ import { ThemeSwitcherMobile } from "./themeSwitcherMobile";
 import { HiOutlineChatBubbleLeftEllipsis, HiOutlineHome, HiOutlineShoppingBag, HiMiniChevronDown, HiArrowLeftOnRectangle, HiBars3, HiXMark, HiOutlineDocumentText, HiOutlineBriefcase } from "react-icons/hi2";
 import { AiOutlineShoppingCart } from "react-icons/ai";
 import { FiPhoneOutgoing } from "react-icons/fi";
+import { LuPlaneTakeoff } from "react-icons/lu";
+import { LuHotel } from "react-icons/lu";
+import { LiaCcVisa } from "react-icons/lia";
+import { IoDocumentTextOutline } from "react-icons/io5";
+
 import Cart from "./cart";
 import type { AttractionCategoriesType } from "@/type/attraction/attraction_categories";
 import { HiChevronLeft } from "react-icons/hi";
@@ -33,6 +38,7 @@ const Header = ({ categoriesAttr }: CategoryAttrListProps) => {
     return (
         <>
 
+
             {/* Header desktop */}
             <header className='hidden absolute top-9 right-0 left-0 z-20 md:flex items-center w-[95%] xl:w-[90%] h-20 mx-auto bg-black/50 rounded-3xl px-3 lg:px-10 py-3 backdrop-blur-[6px]'>
 
@@ -48,8 +54,8 @@ const Header = ({ categoriesAttr }: CategoryAttrListProps) => {
                                 <div className="flex items-center lg:gap-x-4 lg:text-lg md:gap-x-2 md:text-base text-gray-300 text-xl tracking-tightest h-full child:leading-[56px]">
                                     <div>
                                         <Image
-                                            src="/images/app-logo.png"
-                                            alt="لوگو سایت"
+                                            src="/images/app-logo.webp"
+                                            alt="لوگو "
                                             width={52}
                                             height={56}
                                         />
@@ -94,11 +100,11 @@ const Header = ({ categoriesAttr }: CategoryAttrListProps) => {
                                                 ویزا
                                             </Link>
 
-                                           
+
 
                                         </div>
 
-                         
+
                                     </div>
                                     <div className="group">
 
@@ -151,7 +157,9 @@ const Header = ({ categoriesAttr }: CategoryAttrListProps) => {
 
                                     {/* cart & login*/}
                                     <div className='flex gap-x-5 items-center'>
-                                        <Cart />
+                                     
+                                        {/* <Cart /> */}
+                                      
                                         <ThemeSwitcher />
 
                                     </div>
@@ -174,17 +182,15 @@ const Header = ({ categoriesAttr }: CategoryAttrListProps) => {
                                                 )
                                         } */}
                                     </div>
-
                                 </div>
                             </div>
                         </div>
                     </nav>
-
-
                 </div >
             </header>
 
             {/* Header Mobile */}
+
             <div className='flex md:hidden items-center justify-between bg-white dark:bg-zinc-700 h-14 px-4'>
                 {/* Menu bars */}
                 <div onClick={handleMenuScreenResizer}>
@@ -192,8 +198,6 @@ const Header = ({ categoriesAttr }: CategoryAttrListProps) => {
                         <HiBars3 size={24} />
                     </div>
                 </div>
-
-
                 <div className={
                     menuIcon ?
                         'fixed md:hidden top-0 right-0 w-64 min-h-screen bg-white dark:bg-zinc-700 z-20 px-4 ease-in duration-500'
@@ -223,18 +227,41 @@ const Header = ({ categoriesAttr }: CategoryAttrListProps) => {
                     {/* Nav Body */}
                     <div>
                         <ul className='flex flex-col gap-y-4  text-zinc-700 dark:text-white child-hover:text-orange-300 child-hover:bg-orange-200/20 child-hover:rounded-lg my-4'>
-                            <li >
+                            <li>
                                 <Link href="/" className='flex items-center gap-x-2 py-5 h-4 px-2.5'>
                                     <HiOutlineHome size={20} />
                                     صفحه اصلی
+                                </Link>
+                            </li>
+                            <li>
+                                <Link href="/tour" className='flex items-center gap-x-2 py-5 h-4 px-2.5'>
+                                    <LuPlaneTakeoff size={20} />
+                                    
+                                    تورها
+                                </Link>
+                            </li>
+
+                            <li>
+                                <Link href="/hotel" className='flex items-center gap-x-2 py-5 h-4 px-2.5'>
+                                    <LuHotel size={20} />
+                                    هتل ها
+                                </Link>
+                            </li>
+                            <li>
+                                <Link href="/visa" className='flex items-center gap-x-2 py-5 h-4 px-2.5'>
+                             
+                                    <LiaCcVisa size={20} />
+                                    ویزا
+
                                 </Link>
                             </li>
                             <li className='px-2.5' onClick={() => handleSubMenu("1")}>
                                 <div className='flex items-center justify-between'>
                                     <Link href="#" className='flex items-center gap-x-2 py-2.5'>
 
-                                        <HiOutlineShoppingBag size={20} />
-                                        فروشگاه
+                                        <IoDocumentTextOutline 
+                                        size={20} />
+                                        جاذبه های گردشگری
                                     </Link>
 
                                     <div>
@@ -243,16 +270,12 @@ const Header = ({ categoriesAttr }: CategoryAttrListProps) => {
 
                                 </div>
                                 {subMenu === "1" && (
-                                    <SubMenu key='1' />
+
+                                    <AttractionsCategoryListMenu categoriesAttr={categoriesAttr} />
                                 )}
                             </li>
-                            <li>
-                                <Link href="/tour" className='flex items-center gap-x-2 py-5 h-4 px-2.5'>
-                                    <HiOutlineChatBubbleLeftEllipsis size={20} />
-                                    تورها
-                                </Link>
-                            </li>
-                            <li className='px-2.5' onClick={() => handleSubMenu("2")}>
+
+                            {/* <li className='px-2.5' onClick={() => handleSubMenu("2")}>
                                 <div className='flex items-center justify-between'>
                                     <Link href="#" className='flex items-center gap-x-2 py-2.5'>
 
@@ -272,29 +295,8 @@ const Header = ({ categoriesAttr }: CategoryAttrListProps) => {
                                 {subMenu === "2" && (
                                     <SubMenu key='2' />
                                 )}
-                            </li>
+                            </li> */}
 
-                            <li>
-                                <Link href="/hotel" className='flex items-center gap-x-2 py-5 h-4 px-2.5'>
-                                    <HiOutlineBriefcase size={20} />
-                                    هتل ها
-                                </Link>
-                            </li>
-
-                            <li>
-                                <Link href="#" className='flex items-center gap-x-2 py-5 h-4 px-2.5'>
-                                    <HiOutlineDocumentText size={20} />
-                                    جاذبه های گردشگری
-                                </Link>
-                            </li>
-
-
-                            <li>
-                                <Link href="/visa" className='flex items-center gap-x-2 py-5 h-4 px-2.5'>
-                                    <FiPhoneOutgoing size={20} />
-                                     ویزا 
-                                </Link>
-                            </li>
                         </ul>
                     </div>
 
@@ -306,17 +308,14 @@ const Header = ({ categoriesAttr }: CategoryAttrListProps) => {
                         </Link>
 
                         <ThemeSwitcherMobile />
-
+{/* 
                         <Link href="#" className='inline-flex items-center gap-x-2 text-orange-400 dark:text-orange-300 text-base'>
 
                             <AiOutlineShoppingCart size={20} />
                             سبد خرید
-                        </Link>
+                        </Link> */}
                     </div>
-
-
                 </div>
-
                 {/* Icon */}
                 <div>
                     <svg className='w-[100px] h-10 text-orange-300'>
@@ -330,10 +329,9 @@ const Header = ({ categoriesAttr }: CategoryAttrListProps) => {
                         <AiOutlineShoppingCart size={24} />
                     </div>
                 </div>
-
             </div>
-            {/* <div className={menuIcon ? 'md:hidden bg-black/40 fixed inset-0 w-full h-full z-10 transition delay-7000 duration-300 ease-in-out' : 'hidden'}></div> */}
 
+            {/* <div className={menuIcon ? 'md:hidden bg-black/40 fixed inset-0 w-full h-full z-10 transition delay-7000 duration-300 ease-in-out' : 'hidden'}></div> */}
 
         </>
     )

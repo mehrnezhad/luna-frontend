@@ -19,8 +19,7 @@ export type TourCategoryType = {
     id: string,
     title: string,
     slug: string,
-    topContent: string,
-    mainContent: string,
+    contents: { sidebar: string, content: string }[],
     images: string,
     thumbnail: string,
     meta_title: string,
@@ -32,7 +31,7 @@ export type TourCategoryType = {
     videoUrl: string,
     location: string,
     status: string,
-    tourItems: TourItemType[]
+    TourItems: TourItemType[]
 }
 
 
@@ -56,6 +55,9 @@ export type TourItemType = {
         {
             hotelstar: string,
             hotelname: string,
+            hotelslug: string,
+            title: string,
+            image: string,
             hotelservice: string,
             hoteltransfer: string,
             hotelpriceonebed: string,
@@ -94,3 +96,18 @@ export type TourItemType = {
     special: string,
     tourCategories: TourCategoryType[]
 }
+export type HotelType = {
+    hotelstar: string;
+    hotelname: string;
+    hotelservice: string;
+    hoteltransfer: string;
+    hotelpriceonebed: string;
+    hotelpricetwobed: string;
+    hotelpricechild: string;
+    hotelpricechildnobed: string;
+    hotelslug: string;
+    title: string;
+    image: string;
+    lat: string;
+    lng: string;
+};

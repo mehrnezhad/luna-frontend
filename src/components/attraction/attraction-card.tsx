@@ -11,12 +11,12 @@ const AttractionCard = ({ title, images, slug }: AttractionItemsType) => {
 
   return (
 
-    <div className="rounded-t-2xl bg-white shadow-normal dark:bg-zinc-700 overflow-hidden mb-4 ">
+    <div className="rounded-2xl bg-white shadow-normal dark:bg-zinc-700 overflow-hidden mb-4 ">
 
       <div className="p-2">
         <Link href={`/attraction/${slug}`}>
 
-         <Image isZoomed src={`${process.env.NEXT_PUBLIC_HOST_ADDR}/${imagePath}/${imageUrl}`} width={280} height={250} className="mx-auto md:w-auto" alt={title} loading="lazy" />  
+         <Image isZoomed src={`${process.env.NEXT_PUBLIC_HOST_ADDR}/${imagePath}/${imageUrl}`} width={280} className="mx-auto md:w-auto h-[150px] md:h-[250px]" alt={title} loading="lazy" />  
 
         </Link>
       </div>

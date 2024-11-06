@@ -1,6 +1,6 @@
 import * as actions from '@/actions'
 import Script from "next/script";
-import { FAQPage, WithContext } from "schema-dts";
+import { FAQPage, WithContext, Article } from "schema-dts";
 import path from "path"
 import AttractionRightMenu from '@/components/attraction/attraction-item-rightmenu';
 import AttractionMainContent from '@/components/attraction/attraction-item-maincontent';
@@ -69,32 +69,87 @@ const AttractionPage = async ({ params }: { params: { slug: string } }) => {
     const fileName = image[0].split('/').pop()
     const imageUrl = `main-${fileName}`
     const imagePath = image[0].split('/').slice(0, -1).join('/');
+    const jsonLd: WithContext<FAQPage> | null = item.faqs?.length
+        ? {
+            "@context": "https://schema.org",
+            "@type": "FAQPage",
+            mainEntity: item.faqs.map((faq: { question: string, answer: string }) => ({
+                "@type": "Question",
+                name: faq.question,
+                acceptedAnswer: {
+                    "@type": "Answer",
+                    text: faq.answer,
+                }
+            })),
+            headline: item.title,
+            description: item.meta_description,
+            author: {
+                "@type": "Person",
+                name: "lunagasht editor",
+                url: "https://lunagasht.com",
+            },
+            image: `${process.env.HOST_ADDR}/${imagePath}/${imageUrl}`,
+            datePublished: item.createdAt,
+            dateModified: item.updatedAt,
+        } : null;
 
-    const jsonLd: WithContext<FAQPage> = {
+    const articleSchema: WithContext<Article> = {
         "@context": "https://schema.org",
-        "@type": "FAQPage",
-        mainEntity: item.faqs.map(faq => ({
-            "@type": "Question",
-            name: faq.question,
-            acceptedAnswer: {
-                "@type": "Answer",
-                text: faq.answer,
-            }
-        })),
+        "@type": "Article",
         headline: item.title,
         description: item.meta_description,
+        image: `${process.env.HOST_ADDR}/${imagePath}/${imageUrl}`,
         author: {
-            "@type": "Person",
-            name: "Luca Restagno",
-            url: "https://lucarestagno.com",
+            "@type": "Organization",
+            name: "LunaGasht"
         },
-        image: `${process.env.NEXT_PUBLIC_HOST_ADDR}/${imagePath}/${imageUrl}`,
+        publisher: {
+            "@type": "Organization",
+            name: "LunaGasht",
+            logo: {
+                "@type": "ImageObject",
+                url: `${process.env.HOST_MYSEL}/images/logo.webp`
+            }
+        },
         datePublished: item.createdAt,
-        dateModified: item.updatedAt,
-    }
+        dateModified: item.updatedAt
+
+    };
+
+    const breadcrumbSchema = {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        itemListElement: [
+            {
+                "@type": "ListItem",
+                position: 1,
+                name: "صفحه اصلی",
+                item: `${process.env.HOST_MYSEL}`
+            },
+            {
+                "@type": "ListItem",
+                position: 2,
+                name: "جاذبه های گردشگری",
+                item: `${process.env.HOST_MYSEL}/attractions`
+            },
+            ...breadCrumbs.map((category, index) => ({
+                "@type": "ListItem",
+                position: index + 3,
+                name: category.title,
+                item: `${process.env.HOST_MYSEL}/attractions/${category.path}`
+            })),
+            {
+                "@type": "ListItem",
+                position: breadCrumbs.length + 3,
+                name: item.title,
+                item: `${process.env.HOST_MYSEL}/attraction/${item.slug}`
+            }
+        ]
+    };
+
     return (
         <>
-            {item.faqs?.[0]?.question != undefined ?
+            {jsonLd ?
                 <Script
                     id="faq-schema"
                     type="application/ld+json"
@@ -104,23 +159,34 @@ const AttractionPage = async ({ params }: { params: { slug: string } }) => {
                 />
                 : ''
             }
-            <section className='pt-3 md:pt-32 dark:bg-zinc-900 bg-white'>
+            <Script
+                type="application/ld+json"
+                id="article-schema"
+                dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema) }}
+            />
+
+            <Script
+                id="breadcrumb-schema"
+                type="application/ld+json"
+                dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+            />
+
+            <section className='pt-3 md:pt-32 dark:bg-zinc-900 bg-gray-100'>
                 <div className='container'>
-                    
-                        <div className="flex gap-x-5">
-                            <aside className="hidden md:w-1/4 md:flex-1 text-sm md:flex md:flex-col md:gap-y-4 w-[280px] p-3 sticky top-0 h-screen overflow-y-auto border border-slate-200 shadow-sm rounded-t dark:bg-zinc-700">
 
-                                <AttractionRightMenu item={item} />
-                            </aside>
-                            <main className="w-3/4 flex flex-1 flex-col p-4 border border-slate-200 shadow-sm rounded-t dark:bg-zinc-700 dark:text-white">
-                                <AttractionBreadCrumb item={item} breadCrumbs={breadCrumbs} />
-                                <span className="block h-px bg-orange-300"></span>
-                                <AttractionMainContent item={item} />
+                    <div className="flex gap-x-5">
+                        <aside className="hidden border-t-[2px] border-orange-300 rounded-2xl md:w-1/4 md:flex-1 text-sm md:flex md:flex-col md:gap-y-4 w-[280px] p-3 sticky top-0 h-screen overflow-y-auto shadow-sm rounded-t dark:bg-zinc-700 bg-white">
+                            <AttractionRightMenu item={item} />
+                        </aside>
+                        <main className="w-3/4 flex flex-1 flex-col p-4 border-t-[2px] border-orange-300 rounded-2xl shadow-sm rounded-t dark:bg-zinc-700 dark:text-white bg-white">
+                            <AttractionBreadCrumb item={item} breadCrumbs={breadCrumbs} />
+                            <span className="block h-px bg-orange-300"></span>
+                            <AttractionMainContent item={item} />
 
-                            </main>
+                        </main>
 
-                        </div>
-                
+                    </div>
+
                 </div>
             </section>
         </>

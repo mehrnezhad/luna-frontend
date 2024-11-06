@@ -5,7 +5,7 @@ import Link from "next/link"
 import Image from "next/image"
 import { MdLocationOn } from "react-icons/md";
 import { IoStar } from "react-icons/io5";
-const HotelCard = (child: HotelItemType ) => {
+const HotelCard = (child: HotelItemType) => {
 
     const getRatingLabel = (rate: number) => {
         if (rate > 9.5 && rate <= 10) return 'استثنایی';
@@ -45,11 +45,15 @@ const HotelCard = (child: HotelItemType ) => {
                         </div>
                     </div>
 
-                    <Link href={`/hotel/details/${child.slug}`}>
-                        <h2 className="pt-2 line-clamp-1 text-sm md:text-base font-DanaMedium">{child.title}</h2>
-                    </Link>
+
+                    <h3 className="pt-2 line-clamp-1 text-sm md:text-base font-DanaMedium">
+                        <Link href={`/hotel/details/${child.slug}`}>
+                            {child.title}
+                        </Link>
+                    </h3>
+
                     <div className="md:pt-2 pt-2 line-clamp-1 text-xs md:text-sm">{child.titleEn}</div>
-                    <div className="md:text-sm pt-2 md:pt-4 line-clamp-1 flex items-center justify-start text-xs"><MdLocationOn size={20} /> {child.region}</div>
+                    <div className="md:text-sm pt-2 line-clamp-1 flex items-center justify-start text-xs"><MdLocationOn size={20} /> {child.region}</div>
                     <div className="pt-2 flex">
                         {(() => {
                             const stars = [];

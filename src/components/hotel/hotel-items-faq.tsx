@@ -21,13 +21,13 @@ const FaqPageItem = ({ item }: { item: HotelCategoryType | HotelItemType}) => {
         {faqs.length > 0 && faqs[0].question ? (
             <div className="w-full">
             <div className="flex justify-start items-center gap-2">
-                <FaQuestion size={15} className="p-2 shrink-0 w-9 h-9 flex items-center justify-center rounded-[2rem] bg-gradient-to-br from-[#FFB457] to-[#FF705B]" />
+                <FaQuestion size={15} className="p-2 shrink-0 w-7 h-7 flex items-center justify-center rounded-[2rem] bg-gradient-to-br from-[#FFB457] to-[#FF705B]" />
                 <div className="text-xl font-bold"> سوالات متداول </div>
             </div>
             
                 <Accordion>
                     {faqs.map((faq, index) => (
-                        <AccordionItem startContent={<BsQuestionCircleFill />} key={index} aria-label={faq.question} title={faq.question}>
+                        <AccordionItem startContent={<BsQuestionCircleFill />} key={index} aria-label={faq.question} title={<span className="text-sm md:text-base font-semibold font-custom">{faq.question}</span>} >
                             {faq.answer}
                         </AccordionItem>
                     ))}

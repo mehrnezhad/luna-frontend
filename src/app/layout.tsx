@@ -6,6 +6,8 @@ import Header from "@/components/layout/header";
 import { getCategoriesAttractions } from "@/actions/attraction"; 
 import type { AttractionCategoriesType } from "@/type/attraction/attraction_categories";
 import NextTopLoader from 'nextjs-toploader';
+import ToastContainer from "@/components/layout/toastContainer"
+
 export const metadata: Metadata = {
   title: {
    default:"آژانس مسافرتی لونا گشت آریا - مجری مستقیم تور مسافرتی",
@@ -39,11 +41,13 @@ export default async function RootLayout({
   return (
    
     <html lang="fa" dir="rtl">
-      <body className="font-Dana">
+      <body className="font-Dana dark:bg-zinc-900 bg-gray-100">
         <Provider>
         <NextTopLoader showSpinner={false}/>
+        <ToastContainer />
          <Header categoriesAttr={categoriesAttr}/>
           {children}
+     
           <Footer />
         </Provider>
       </body>

@@ -11,7 +11,7 @@ import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import 'swiper/css/scrollbar';
 
-const ReactSlider = ({ images }: { images: string }) => {
+const ReactSlider = ({ images , title }: { images: string  , title: string}) => {
 
   const sliderImages = typeof images === 'string' ? JSON.parse(images) : images 
   
@@ -22,7 +22,6 @@ const ReactSlider = ({ images }: { images: string }) => {
         spaceBetween={10}
         slidesPerView={1}
         navigation
-
         pagination={{ clickable: true }}
         scrollbar={{ draggable: true }}
         onSwiper={(swiper) => {
@@ -34,8 +33,8 @@ const ReactSlider = ({ images }: { images: string }) => {
             <div className="relative w-full h-full">
               <img
                 src={`${process.env.NEXT_PUBLIC_HOST_ADDR}/${img}`}
-                alt={`Slide ${index + 1}`}
-                className='w-full md:h-[350px] h-250'
+                alt={title}
+                className='w-full md:h-[350px] h-[200px]'
               />
             </div>
           </SwiperSlide>

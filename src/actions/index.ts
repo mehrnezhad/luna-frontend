@@ -2,6 +2,8 @@ export {getItemsAttractions, getCategoriesAttractions , getBreadCrumbs , getItem
 
 export {getParentcategory , getCategory} from './visa'
 
-export {getPageWithHotelSlug , getAllCategoriesHotel , getAllItemsHotelWitCatSlug,getItemWithSlug} from './hotel'
+export {updateStarHotel,getPageWithHotelSlug , getAllCategoriesHotel , getAllItemsHotelWitCatSlug,getItemWithSlug} from './hotel'
 
-export {getPageWithTourSlug , getAllCategoriesTour} from './tour'
+export {getPageWithTourSlug , getAllCategoriesTour , getAllItemsTourWitCatSlug, getItemTourWithId} from './tour'
+
+export {getAllItemsTourHomePage , getAllCategoriesTourHomePage} from './home'
